@@ -14,11 +14,14 @@ cache:
     - $HOME/.composer/cache
     
 matrix:
+  include:
+    - php: 5.3
+      env: COMPOSER_FLAGS="--prefer-lowest"
   fast_finish: true
 
 before_install: composer self-update
 
-install: composer update --prefer-dist
+install: composer update --prefer-dist $COMPOSER_FLAGS
 
 script: phpunit --coverage-text
 
